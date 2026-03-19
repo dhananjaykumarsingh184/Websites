@@ -1,119 +1,118 @@
 import React, { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { FunnelIcon, AdjustmentsHorizontalIcon, ShoppingBagIcon } from '@heroicons/react/24/outline';
-import { useCart } from '../context/CartContext';
+import { useCart } from '../../context/CartContext';
 
-interface Ring {
+interface Pendant {
   id: string;
   name: string;
   price: number;
   image: string;
-  stampType: string;
+  gemstone: string;
   metalType: string;
-  diamondType: string;
-  weight: number;
+  designStyle: string;
+  chainLength: string;
   karat: string;
   description: string;
 }
 
-const EngagementRings: React.FC = () => {
+const Pendants: React.FC = () => {
   const [filters, setFilters] = useState({
-    stampType: '',
+    gemstone: '',
     metalType: '',
-    diamondType: '',
-    weightRange: { min: 0, max: 10 },
-    priceRange: { min: 0, max: 100000 }
+    designStyle: '',
+    chainLength: '',
+    priceRange: { min: 0, max: 50000 }
   });
   const [sortBy, setSortBy] = useState<'price-low' | 'price-high'>('price-low');
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const { addItem } = useCart();
 
-  // Mock data for engagement rings
-  const rings: Ring[] = [
+  // Mock data for pendants
+  const pendants: Pendant[] = [
     {
       id: '1',
-      name: 'Classic Solitaire Diamond Ring',
-      price: 2500,
-      image: '/images/categories/Gold Rings/Screenshot 2026-03-19 142516.png',
-      stampType: 'BIS Hallmarked',
-      metalType: 'Yellow Gold',
-      diamondType: 'VVS1 Clarity',
-      weight: 1.5,
+      name: 'Diamond Heart Pendant',
+      price: 8500,
+      image: '/images/categories/Pendants/48556.webp',
+      gemstone: 'Diamond',
+      metalType: 'White Gold',
+      designStyle: 'Romantic',
+      chainLength: '18 inches',
       karat: '18K',
-      description: 'Timeless elegance with a brilliant center stone'
+      description: 'Elegant diamond heart pendant with delicate chain'
     },
     {
       id: '2',
-      name: 'Rose Gold Halo Ring',
-      price: 3200,
-      image: '/images/categories/Gold Rings/Screenshot 2026-03-19 142551.png',
-      stampType: 'BIS Hallmarked',
-      metalType: 'Rose Gold',
-      diamondType: 'VS2 Clarity',
-      weight: 2.0,
-      karat: '18K',
-      description: 'Romantic design with sparkling halo'
+      name: 'Gold Cross Pendant',
+      price: 4200,
+      image: '/images/categories/Pendants/48556.webp',
+      gemstone: 'None',
+      metalType: 'Yellow Gold',
+      designStyle: 'Religious',
+      chainLength: '20 inches',
+      karat: '22K',
+      description: 'Traditional gold cross pendant for spiritual elegance'
     },
     {
       id: '3',
-      name: 'White Gold Princess Cut',
-      price: 4100,
-      image: '/images/categories/Gold Rings/Screenshot 2026-03-19 142611.png',
-      stampType: 'BIS Hallmarked',
+      name: 'Pearl Initial Pendant',
+      price: 3800,
+      image: '/images/categories/Pendants/48556.webp',
+      gemstone: 'Pearl',
       metalType: 'White Gold',
-      diamondType: 'VVS2 Clarity',
-      weight: 2.5,
+      designStyle: 'Personalized',
+      chainLength: '16 inches',
       karat: '18K',
-      description: 'Modern princess cut in luxurious white gold'
+      description: 'Custom initial pendant with freshwater pearl'
     },
     {
       id: '4',
-      name: 'Platinum Eternity Band',
-      price: 5500,
-      image: '/images/categories/Gold Rings/Screenshot 2026-03-19 142633.png',
-      stampType: 'BIS Hallmarked',
-      metalType: 'Platinum',
-      diamondType: 'FL Clarity',
-      weight: 3.0,
-      karat: '950',
-      description: 'Endless love with full eternity setting'
+      name: 'Ruby Flower Pendant',
+      price: 7200,
+      image: '/images/categories/Pendants/48556.webp',
+      gemstone: 'Ruby',
+      metalType: 'Rose Gold',
+      designStyle: 'Floral',
+      chainLength: '18 inches',
+      karat: '18K',
+      description: 'Beautiful ruby flower pendant in rose gold setting'
     },
     {
       id: '5',
-      name: 'Yellow Gold Three Stone Ring',
-      price: 2800,
-      image: '/images/categories/Gold Rings/Screenshot 2026-03-19 142709.png',
-      stampType: 'BIS Hallmarked',
-      metalType: 'Yellow Gold',
-      diamondType: 'VS1 Clarity',
-      weight: 1.8,
-      karat: '18K',
-      description: 'Past, present, future - three stone design'
+      name: 'Sapphire Star Pendant',
+      price: 6500,
+      image: '/images/categories/Pendants/48556.webp',
+      gemstone: 'Sapphire',
+      metalType: 'Platinum',
+      designStyle: 'Celestial',
+      chainLength: '17 inches',
+      karat: '950',
+      description: 'Star-shaped sapphire pendant in platinum'
     },
     {
       id: '6',
-      name: 'Rose Gold Vintage Style',
-      price: 3600,
-      image: '/images/categories/Gold Rings/Screenshot 2026-03-19 142743.png',
-      stampType: 'BIS Hallmarked',
-      metalType: 'Rose Gold',
-      diamondType: 'VVS2 Clarity',
-      weight: 2.2,
-      karat: '18K',
-      description: 'Antique inspired design with modern comfort'
+      name: 'Gold Om Pendant',
+      price: 2800,
+      image: '/images/categories/Pendants/48556.webp',
+      gemstone: 'None',
+      metalType: 'Yellow Gold',
+      designStyle: 'Spiritual',
+      chainLength: '19 inches',
+      karat: '22K',
+      description: 'Sacred Om symbol pendant in pure gold'
     }
   ];
 
-  const filteredAndSortedRings = useMemo(() => {
-    let filtered = rings.filter(ring => {
+  const filteredAndSortedPendants = useMemo(() => {
+    let filtered = pendants.filter(pendant => {
       return (
-        (!filters.stampType || ring.stampType === filters.stampType) &&
-        (!filters.metalType || ring.metalType === filters.metalType) &&
-        (!filters.diamondType || ring.diamondType === filters.diamondType) &&
-        ring.weight >= filters.weightRange.min &&
-        ring.weight <= filters.weightRange.max &&
-        ring.price >= filters.priceRange.min &&
-        ring.price <= filters.priceRange.max
+        (!filters.gemstone || pendant.gemstone === filters.gemstone) &&
+        (!filters.metalType || pendant.metalType === filters.metalType) &&
+        (!filters.designStyle || pendant.designStyle === filters.designStyle) &&
+        (!filters.chainLength || pendant.chainLength === filters.chainLength) &&
+        pendant.price >= filters.priceRange.min &&
+        pendant.price <= filters.priceRange.max
       );
     });
 
@@ -127,18 +126,18 @@ const EngagementRings: React.FC = () => {
     });
 
     return filtered;
-  }, [rings, filters, sortBy]);
+  }, [pendants, filters, sortBy]);
 
-  const addToCart = (ring: Ring) => {
+  const addToCart = (pendant: Pendant) => {
     addItem({
-      id: ring.id,
-      name: ring.name,
-      price: ring.price,
-      image: ring.image,
+      id: pendant.id,
+      name: pendant.name,
+      price: pendant.price,
+      image: pendant.image,
       specifications: {
-        karat: ring.karat,
-        weight: `${ring.weight}g`,
-        dimensions: `${ring.weight}"`
+        karat: pendant.karat,
+        weight: pendant.chainLength,
+        dimensions: pendant.gemstone
       }
     });
   };
@@ -153,12 +152,12 @@ const EngagementRings: React.FC = () => {
               to="/"
               className="bg-white/90 backdrop-blur-sm text-charcoal-800 hover:text-champagne-700 font-medium px-3 py-2 rounded-lg shadow-sm transition-all duration-200"
             >
-              ← Back to Home
+              ← Back
             </Link>
           </div>
           <div className="text-center">
-            <h1 className="text-5xl font-serif font-bold text-charcoal-800 mb-6">Engagement Rings</h1>
-            <p className="text-xl text-charcoal-600 mb-8 max-w-2xl mx-auto">Discover our collection of exquisite engagement rings from Popular Jewellers. Find the perfect ring for your special moment.</p>
+            <h1 className="text-5xl font-serif font-bold text-charcoal-800 mb-6">Pendants</h1>
+            <p className="text-xl text-charcoal-600 mb-8 max-w-2xl mx-auto">Discover our exquisite collection of handcrafted pendants from Popular Jewellers. Find the perfect pendant for every occasion.</p>
           </div>
         </div>
       </div>
@@ -179,18 +178,22 @@ const EngagementRings: React.FC = () => {
               </div>
 
               <div className={`space-y-6 ${isFilterOpen ? 'block' : 'hidden md:block'}`}>
-                {/* Stamp Type */}
+                {/* Gemstone */}
                 <div>
                   <label className="block text-sm font-medium text-charcoal-700 mb-2">
-                    Stamp Type
+                    Gemstone
                   </label>
                   <select
-                    value={filters.stampType}
-                    onChange={(e) => setFilters({...filters, stampType: e.target.value})}
+                    value={filters.gemstone}
+                    onChange={(e) => setFilters({...filters, gemstone: e.target.value})}
                     className="w-full px-3 py-2 border border-charcoal-300 rounded-md focus:ring-2 focus:ring-champagne-500 focus:border-transparent"
                   >
                     <option value="">All</option>
-                    <option value="BIS Hallmarked">BIS Hallmarked</option>
+                    <option value="Diamond">Diamond</option>
+                    <option value="Ruby">Ruby</option>
+                    <option value="Sapphire">Sapphire</option>
+                    <option value="Pearl">Pearl</option>
+                    <option value="None">No Gemstone</option>
                   </select>
                 </div>
 
@@ -212,56 +215,43 @@ const EngagementRings: React.FC = () => {
                   </select>
                 </div>
 
-                {/* Diamond Type */}
+                {/* Design Style */}
                 <div>
                   <label className="block text-sm font-medium text-charcoal-700 mb-2">
-                    Diamond Type
+                    Design Style
                   </label>
                   <select
-                    value={filters.diamondType}
-                    onChange={(e) => setFilters({...filters, diamondType: e.target.value})}
+                    value={filters.designStyle}
+                    onChange={(e) => setFilters({...filters, designStyle: e.target.value})}
                     className="w-full px-3 py-2 border border-charcoal-300 rounded-md focus:ring-2 focus:ring-champagne-500 focus:border-transparent"
                   >
                     <option value="">All</option>
-                    <option value="FL Clarity">FL Clarity</option>
-                    <option value="VVS1 Clarity">VVS1 Clarity</option>
-                    <option value="VVS2 Clarity">VVS2 Clarity</option>
-                    <option value="VS1 Clarity">VS1 Clarity</option>
-                    <option value="VS2 Clarity">VS2 Clarity</option>
+                    <option value="Romantic">Romantic</option>
+                    <option value="Religious">Religious</option>
+                    <option value="Personalized">Personalized</option>
+                    <option value="Floral">Floral</option>
+                    <option value="Celestial">Celestial</option>
+                    <option value="Spiritual">Spiritual</option>
                   </select>
                 </div>
 
-                {/* Weight Range */}
+                {/* Chain Length */}
                 <div>
                   <label className="block text-sm font-medium text-charcoal-700 mb-2">
-                    Weight (grams): {filters.weightRange.min} - {filters.weightRange.max}
+                    Chain Length
                   </label>
-                  <div className="space-y-2">
-                    <input
-                      type="range"
-                      min="0"
-                      max="10"
-                      step="0.1"
-                      value={filters.weightRange.min}
-                      onChange={(e) => setFilters({
-                        ...filters,
-                        weightRange: {...filters.weightRange, min: parseFloat(e.target.value)}
-                      })}
-                      className="w-full"
-                    />
-                    <input
-                      type="range"
-                      min="0"
-                      max="10"
-                      step="0.1"
-                      value={filters.weightRange.max}
-                      onChange={(e) => setFilters({
-                        ...filters,
-                        weightRange: {...filters.weightRange, max: parseFloat(e.target.value)}
-                      })}
-                      className="w-full"
-                    />
-                  </div>
+                  <select
+                    value={filters.chainLength}
+                    onChange={(e) => setFilters({...filters, chainLength: e.target.value})}
+                    className="w-full px-3 py-2 border border-charcoal-300 rounded-md focus:ring-2 focus:ring-champagne-500 focus:border-transparent"
+                  >
+                    <option value="">All</option>
+                    <option value="16 inches">16 inches</option>
+                    <option value="17 inches">17 inches</option>
+                    <option value="18 inches">18 inches</option>
+                    <option value="19 inches">19 inches</option>
+                    <option value="20 inches">20 inches</option>
+                  </select>
                 </div>
 
                 {/* Price Range */}
@@ -273,7 +263,7 @@ const EngagementRings: React.FC = () => {
                     <input
                       type="range"
                       min="0"
-                      max="100000"
+                      max="50000"
                       step="500"
                       value={filters.priceRange.min}
                       onChange={(e) => setFilters({
@@ -285,7 +275,7 @@ const EngagementRings: React.FC = () => {
                     <input
                       type="range"
                       min="0"
-                      max="100000"
+                      max="50000"
                       step="500"
                       value={filters.priceRange.max}
                       onChange={(e) => setFilters({
@@ -304,7 +294,7 @@ const EngagementRings: React.FC = () => {
           <div className="flex-1">
             {/* Sort Controls */}
             <div className="flex justify-between items-center mb-6">
-              <p className="text-charcoal-600">{filteredAndSortedRings.length} rings found</p>
+              <p className="text-charcoal-600">{filteredAndSortedPendants.length} pendants found</p>
               <div className="flex items-center gap-2">
                 <label className="text-sm font-medium text-charcoal-700">Sort by:</label>
                 <select
@@ -318,48 +308,48 @@ const EngagementRings: React.FC = () => {
               </div>
             </div>
 
-            {/* Rings Grid */}
+            {/* Pendants Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {filteredAndSortedRings.map((ring) => (
-                <div key={ring.id} className="bg-white rounded-lg shadow-sm overflow-hidden group hover:shadow-lg transition-shadow duration-300">
+              {filteredAndSortedPendants.map((pendant) => (
+                <div key={pendant.id} className="bg-white rounded-lg shadow-sm overflow-hidden group hover:shadow-lg transition-shadow duration-300">
                   <div className="aspect-square overflow-hidden">
                     <img
-                      src={ring.image}
-                      alt={ring.name}
+                      src={pendant.image}
+                      alt={pendant.name}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                     />
                   </div>
                   <div className="p-6">
                     <h3 className="font-serif text-lg font-semibold text-charcoal-800 mb-2">
-                      {ring.name}
+                      {pendant.name}
                     </h3>
-                    <p className="text-sm text-charcoal-600 mb-3">{ring.description}</p>
+                    <p className="text-sm text-charcoal-600 mb-3">{pendant.description}</p>
 
                     <div className="space-y-1 text-xs text-charcoal-500 mb-4">
                       <div className="flex justify-between">
                         <span>Metal:</span>
-                        <span>{ring.metalType} ({ring.karat})</span>
+                        <span>{pendant.metalType} ({pendant.karat})</span>
                       </div>
                       <div className="flex justify-between">
-                        <span>Diamond:</span>
-                        <span>{ring.diamondType}</span>
+                        <span>Gemstone:</span>
+                        <span>{pendant.gemstone}</span>
                       </div>
                       <div className="flex justify-between">
-                        <span>Weight:</span>
-                        <span>{ring.weight}g</span>
+                        <span>Design:</span>
+                        <span>{pendant.designStyle}</span>
                       </div>
                       <div className="flex justify-between">
-                        <span>Stamp:</span>
-                        <span>{ring.stampType}</span>
+                        <span>Chain:</span>
+                        <span>{pendant.chainLength}</span>
                       </div>
                     </div>
 
                     <div className="flex items-center justify-between">
                       <span className="text-2xl font-bold text-champagne-600">
-                        ₹{ring.price.toLocaleString()}
+                        ₹{pendant.price.toLocaleString()}
                       </span>
                       <button
-                        onClick={() => addToCart(ring)}
+                        onClick={() => addToCart(pendant)}
                         className="bg-champagne-600 hover:bg-champagne-700 text-white px-4 py-2 rounded-lg flex items-center gap-2 transition-colors duration-200"
                       >
                         <ShoppingBagIcon className="h-4 w-4" />
@@ -377,4 +367,4 @@ const EngagementRings: React.FC = () => {
   );
 };
 
-export default EngagementRings;
+export default Pendants;

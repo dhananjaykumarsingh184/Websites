@@ -9,10 +9,6 @@ const TopContactBar: React.FC = () => {
             <span className="font-medium">Contact:</span>
             <span>+918276990847</span>
           </div>
-          <div className="flex items-center gap-2">
-            <span className="font-medium">Email:</span>
-            <span>care@npjewellers.com</span>
-          </div>
         </div>
       </div>
     </div>

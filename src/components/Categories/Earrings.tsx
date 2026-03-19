@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { FunnelIcon, AdjustmentsHorizontalIcon, ShoppingBagIcon } from '@heroicons/react/24/outline';
-import { useCart } from '../context/CartContext';
+import { useCart } from '../../context/CartContext';
 
 interface Earring {
   id: string;
@@ -213,7 +213,7 @@ const Earrings: React.FC = () => {
               to="/"
               className="bg-white/90 backdrop-blur-sm text-charcoal-800 hover:text-champagne-700 font-medium px-3 py-2 rounded-lg shadow-sm transition-all duration-200"
             >
-              ← Back to Home
+              ← Back
             </Link>
           </div>
           <div className="text-center">
