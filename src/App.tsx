@@ -8,11 +8,16 @@ import AboutUs from './components/AboutUs';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import ProductDetail from './components/ProductDetail';
-import EngagementRings from './components/EngagementRings';
-import Bangles from './components/Bangles';
-import Earrings from './components/Earrings';
+import EngagementRings from './components/Categories/EngagementRings';
+import Bangles from './components/Categories/Bangles';
+import Earrings from './components/Categories/Earrings';
 import { CartProvider } from './context/CartContext';
 import { FilterProvider } from './context/FilterContext';
+import Pendants from './components/Categories/Pendants';
+import Bracelets from './components/Categories/Bracelets';
+import Necklaces from './components/Categories/Necklaces';
+import AllProducts from './components/AllProducts';
+import About from './components/About';
 
 function App() {
   return (
@@ -34,6 +39,14 @@ function App() {
               <Route path="/category/engagement-rings" element={<EngagementRings />} />
               <Route path="/category/bangles" element={<Bangles />} />
               <Route path="/category/earrings" element={<Earrings />} />
+              <Route path="/category/pendants" element={<Pendants />} />
+              <Route path="/category/necklaces" element={<Necklaces />} />
+              <Route path="/category/bracelets" element={<Bracelets />} />
+              <Route path="/all-products" element={<AllProducts />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/instagram" element={<InstagramSection />} />
+              <Route path="/collections" element={<ProductCategories />} />
             </Routes>
             <Footer />
           </div>

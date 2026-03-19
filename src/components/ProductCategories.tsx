@@ -18,9 +18,8 @@ const ProductCategories: React.FC = () => {
       id: 'engagement-rings',
       name: 'Engagement Rings',
       description: 'Timeless symbols of love and commitment',
-      image: '/images/categories/Screenshot 2026-03-19 142551.png',
+      image: '/images/categories/Gold Rings/Screenshot 2026-03-19 142812.png',
       itemCount: 48,
-      featured: true,
     },
     {
       id: 'necklaces',

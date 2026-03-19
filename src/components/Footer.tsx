@@ -137,7 +137,7 @@ const Footer: React.FC = () => {
               </div>
               <div className="flex items-center gap-3 text-charcoal-300">
                 <MapPinIcon className="h-5 w-5 text-champagne-600" />
-                <span>123 Jewelry Lane, New York, NY 10001</span>
+                <span>49/5/H 214, Karl Marx Sarani Rd, Babu Bazar, Khidirpur, Kolkata, West Bengal 700023</span>
               </div>
             </div>
 

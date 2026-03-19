@@ -21,10 +21,10 @@ const Navbar: React.FC = () => {
 
   const navItems = [
     { name: 'Home', href: '/' },
-    { name: 'Collections', href: '#collections' },
-    { name: 'Shop the Look', href: '#instagram' },
-    { name: 'About', href: '#about' },
-    { name: 'Contact', href: '#contact' },
+    { name: 'Collections', href: 'collections' },
+    { name: 'Shop the Look', href: '/instagram' },
+    { name: 'About', href: '/about' },
+    { name: 'Contact', href: '/contact' },
   ];
 
   return (
@@ -49,13 +49,13 @@ const Navbar: React.FC = () => {
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center space-x-8">
               {navItems.map((item) => {
-                const isCollectionsOnHome = item.name === 'Collections' && item.href === '#collections';
-                const href = isCollectionsOnHome && location.pathname !== '/' ? '/#collections' : item.href;
+                const isAnchorLink = item.href.startsWith('#');
+                const href = isAnchorLink ? `/${item.href}` : item.href;
                 return (
                   <Link
                     key={item.name}
                     to={href}
-                    className={`text-charcoal-700 hover:text-champagne-600 transition-colors duration-200 ${
+                    className={`text-champagne-600 hover:text-champagne-800 font-bold transition-colors duration-200 ${
                       location.pathname === '/' && item.href.startsWith('#')
                         ? 'scroll-smooth'
                         : ''
@@ -108,7 +108,7 @@ const Navbar: React.FC = () => {
                       key={item.name}
                       to={href}
                       onClick={() => setIsMobileMenuOpen(false)}
-                      className="text-charcoal-700 hover:text-champagne-600 transition-colors duration-200"
+                      className="text-champagne-600 hover:text-champagne-800 font-bold transition-colors duration-200"
                     >
                       {item.name}
                     </Link>

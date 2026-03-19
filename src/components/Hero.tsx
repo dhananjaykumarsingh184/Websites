@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { PlayIcon, ChevronRightIcon } from '@heroicons/react/24/outline';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 
 const Hero: React.FC = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -38,7 +39,7 @@ const Hero: React.FC = () => {
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % slides.length);
-    }, 5000);
+    }, 10000);
 
     return () => clearInterval(timer);
   }, [slides.length]);
@@ -94,14 +95,27 @@ const Hero: React.FC = () => {
               {currentSlideData.subtitle}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="bg-champagne-600 hover:bg-champagne-700 text-white font-medium py-4 px-8 rounded-lg transition-all duration-300 flex items-center justify-center gap-2"
-              >
-                {currentSlideData.cta}
-                <ChevronRightIcon className="h-5 w-5" />
-              </motion.button>
+              {(currentSlideData.cta === 'View Rings' || currentSlideData.cta === 'Explore Collection' || currentSlideData.cta === 'Discover More') ? (
+                <Link to={currentSlideData.cta === 'View Rings' ? '/category/engagement-rings' : '/all-products'}>
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="bg-champagne-600 hover:bg-champagne-700 text-white font-medium py-4 px-8 rounded-lg transition-all duration-300 flex items-center justify-center gap-2"
+                  >
+                    {currentSlideData.cta}
+                    <ChevronRightIcon className="h-5 w-5" />
+                  </motion.button>
+                </Link>
+              ) : (
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="bg-champagne-600 hover:bg-champagne-700 text-white font-medium py-4 px-8 rounded-lg transition-all duration-300 flex items-center justify-center gap-2"
+                >
+                  {currentSlideData.cta}
+                  <ChevronRightIcon className="h-5 w-5" />
+                </motion.button>
+              )}
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -144,12 +158,6 @@ const Hero: React.FC = () => {
         </div>
       </motion.div>
 
-      {/* Email Contact */}
-      <div className="absolute top-8 right-8 z-20">
-        <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-lg px-4 py-2">
-          <span className="text-white text-sm font-medium">care@npjewellers.com</span>
-        </div>
-      </div>
     </section>
   );
 };
