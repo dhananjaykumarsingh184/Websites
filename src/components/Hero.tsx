@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 const Hero: React.FC = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
-
+  
   const slides = [
     {
       id: 1,
