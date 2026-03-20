@@ -29,7 +29,7 @@ const EngagementRings: React.FC = () => {
   const { addItem } = useCart();
 
   // Mock data for engagement rings
-  const rings: Ring[] = [
+  const rings: Ring[] = useMemo(() => [
     {
       id: '1',
       name: 'Classic Solitaire Diamond Ring',
@@ -102,7 +102,7 @@ const EngagementRings: React.FC = () => {
       karat: '18K',
       description: 'Antique inspired design with modern comfort'
     }
-  ];
+  ], []);
 
   const filteredAndSortedRings = useMemo(() => {
     let filtered = rings.filter(ring => {
