@@ -33,7 +33,7 @@ const AllProducts: React.FC = () => {
   const { addItem } = useCart();
 
   // Mock data for all products
-  const allProducts: Product[] = [
+  const allProducts: Product[] = useMemo(() => [
     // Engagement Rings
     {
       id: 'er-1',
@@ -261,7 +261,7 @@ const AllProducts: React.FC = () => {
       karat: '18K',
       description: 'Beautiful freshwater pearl strand bracelet'
     }
-  ];
+  ], []);
 
   const filteredAndSortedProducts = useMemo(() => {
     let filtered = allProducts.filter(product => {

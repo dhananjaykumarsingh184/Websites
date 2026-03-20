@@ -30,7 +30,7 @@ const Bracelets: React.FC = () => {
   const { addItem } = useCart();
 
   // Mock data for bracelets
-  const bracelets: Bracelet[] = [
+  const bracelets: Bracelet[] = useMemo(() => [
     {
       id: '1',
       name: 'Diamond Tennis Bracelet',
@@ -109,7 +109,7 @@ const Bracelets: React.FC = () => {
       karat: '22K',
       description: 'Modern gold cuff bracelet with clean, contemporary design'
     }
-  ];
+  ], []);
 
   const filteredAndSortedBracelets = useMemo(() => {
     let filtered = bracelets.filter(bracelet => {
