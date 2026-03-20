@@ -7,7 +7,6 @@ import InstagramSection from './components/InstagramSection';
 import AboutUs from './components/AboutUs';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
-import ProductDetail from './components/ProductDetail';
 import EngagementRings from './components/Categories/EngagementRings';
 import Bangles from './components/Categories/Bangles';
 import Earrings from './components/Categories/Earrings';
