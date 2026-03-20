@@ -1,5 +1,5 @@
 {
-   "homepage": "https://dhananjaykumarsingh184.github.io/Websites/",
+  "homepage": "https://dhananjaykumarsingh184.github.io/Websites/",
   "name": "new-popular-jewellers",
   "version": "1.0.0",
   "description": "Modern e-commerce website for New Popular Jewellers",
@@ -9,8 +9,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-        "predeploy": "npm run build",
-        "deploy": "gh-pages -d build",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
     
   },
   "dependencies": {
